@@ -24,15 +24,18 @@ kernel_size = (3, 3)
 #load training data
 trainData,trainLabels = load_dataset("dataset/mnist_train.csv")
 trainLabels = encode(trainLabels)
+
 #load testing data
 testData,testLabels = load_dataset("dataset/mnist_test.csv")
 testLabels = encode(testLabels)
+
 #convert to float
 trainData = trainData.astype("float32")
 testData = testData.astype("float32")
 
 #refactoring train and test sets
 X_train,Y_train,X_test,Y_test = trainData,trainLabels,testData,testLabels
+
 #normalize data
 X_train /= 255
 X_test /= 255
@@ -76,5 +79,6 @@ print('Test cost:', score[0])
 print('Test accuracy:', score[1])
 
 print("[INFO] saving model to disk...")
+
 #save model to disk
 model.save("output/mnist_cnn.model")

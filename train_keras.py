@@ -6,12 +6,15 @@ from utils.dataset import load_dataset,encode
 #load training set and encode
 trainData,trainLabels = load_dataset("dataset/mnist_train.csv")
 trainLabels = encode(trainLabels)
+
 #load testing set and encode
 testData,testLabels = load_dataset("dataset/mnist_test.csv")
 testLabels = encode(testLabels)
+
 #convert to float
 trainData = trainData.astype("float32")
 testData = testData.astype("float32")
+
 #normalize
 trainData /= 255
 testData /= 255
@@ -21,6 +24,7 @@ model = Sequential()
 model.add(Dense(input_dim=784,output_dim=256,activation='relu',init="normal"))
 model.add(Dense(output_dim=256,activation='relu',init="normal"))
 model.add(Dense(output_dim=10,activation="softmax"))
+
 #compile and fit
 model.compile("adam","categorical_crossentropy",metrics=["accuracy"])
 model.fit(trainData,trainLabels,batch_size=100,nb_epoch=25,verbose=2,validation_data=(testData,testLabels))

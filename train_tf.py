@@ -66,15 +66,16 @@ pred = feedforward(X,weights,biases)
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred,y))
 optimizer = tf.train.AdamOptimizer(learning_rate=0.001).minimize(cost)
 
-
+#initialize all the tensorflow variables
 init = tf.initialize_all_variables()
 
+#create a tensorflow session
 sess = tf.Session()
 sess.run(init)
 
 for i in xrange(num_epochs):
     costs = []
-    #MiniBatch descent
+    #MiniBatch descent with batch_size:100
     for start, end in zip(range(0, len(trainData), 100), range(100, len(trainData)+1, 100)):
         _,c = sess.run([optimizer,cost],feed_dict={X: trainData[start:end],y: trainLabels[start:end]})
         costs.append(c)
