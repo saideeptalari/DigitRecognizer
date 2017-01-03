@@ -26,14 +26,13 @@ The below text represents the CNN model implemented in this project
             Convolution Layer 2 ---> filter_shape:(3,3), no.of.filters: 32, strides: 1, padding: valid
             Activation ---> Relu
             MaxPooling ---> pool_size: (2,2) i.e., halves the image, padding: valid
-            Dropout ---> 0.25 (keep probability)
+            Dropout ---> 0.75 (keep probability)
             
             Fully Connected Layer 1 ---> num_units: 128,input_dim: 5*5*32
             Activation ---> Relu
             Dropout ---> 0.5 (keep probability)
             
             Fully Connected Layer 2 ---> num_units: 10, input_dim: 128
-            Activation ---> Softmax
             
             Optimizer ---> Adadelta, learning_rate: 0.001
             fit ---> batch_size: 128, nb_epochs: 12
